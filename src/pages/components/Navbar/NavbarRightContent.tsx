@@ -7,7 +7,7 @@ import {
     CustomMenu,
 } from "../mui";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import CopyrightOutlinedIcon from "@mui/icons-material/CopyrightOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
@@ -52,7 +52,7 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                     </CustomIcon>
 
                     <CustomIcon tooltipTitle="Coin" tooltipPlacment="bottom">
-                        <MonetizationOnOutlinedIcon />
+                        <CopyrightOutlinedIcon />
                     </CustomIcon>
 
                     <CustomIcon

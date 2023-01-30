@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
+import { CustomCard } from "../mui";
 import { CommunitiesFeedContent } from "./CommunitiesFeedContent";
 
 type CommunitiesFeedSidebarProps = {
@@ -14,12 +15,10 @@ const CommunitiesFeedSidebar: React.FC<CommunitiesFeedSidebarProps> = ({
 
     return (
 
-            <Box
+            <CustomCard
                 sx={{
                     width: "270px",
-                    backgroundColor: "background.paper",
                     py: "1rem",
-                    mt: ".5rem",
                     height: "93.5vh",
                     // overflowY:"scroll"
                 }}
@@ -28,7 +27,7 @@ const CommunitiesFeedSidebar: React.FC<CommunitiesFeedSidebarProps> = ({
                     showSidebar={showSidebar}
                     setShowSidebar={setShowSidebar}
                 />
-            </Box>
+            </CustomCard>
        
     );
 };

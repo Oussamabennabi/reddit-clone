@@ -13,7 +13,6 @@ import {
 } from "../mui";
 import HomeIcon from "@mui/icons-material/Home";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-import OpenInFullOutlinedIcon from "@mui/icons-material/OpenInFullOutlined";
 import { CommunitiesFeedContent } from "../Sidebars/CommunitiesFeedContent";
 type NavbarLeftContentProps = {
     showSidebar: boolean;
@@ -100,6 +99,7 @@ const NavbarLeftContent: React.FC<NavbarLeftContentProps> = ({
                 </SearchIconWrapper>
                 <StyledInputBase
                     fullWidth
+                    
                     placeholder="Search Reddit"
                     inputProps={{ "aria-label": "search" }}
                 />

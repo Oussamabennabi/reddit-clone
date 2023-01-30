@@ -3,7 +3,8 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { CustomMenuButton, CustomMenuSwitchButton, CustomSwitchButton } from "../mui";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import CopyrightOutlinedIcon from "@mui/icons-material/CopyrightOutlined";
+
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LocalPoliceOutlinedIcon from "@mui/icons-material/LocalPoliceOutlined";
 import AdjustOutlinedIcon from "@mui/icons-material/AdjustOutlined";
@@ -61,7 +62,7 @@ const UserDropDownMenu: React.FC<UserDropDownMenuProps> = () => {
                 text="Advertise on Reddit"
                 leftIcon={<CampaignOutlinedIcon />}
             />
-            <CustomMenuButton leftIcon={<MonetizationOnOutlinedIcon />}>
+            <CustomMenuButton leftIcon={<CopyrightOutlinedIcon />}>
                 <Box textAlign="center" flexDirection={"column"}>
                     <Typography>Coins</Typography>
                     <Typography component={"small"} fontSize="12px">
