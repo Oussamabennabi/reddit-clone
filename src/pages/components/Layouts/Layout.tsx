@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
+import CommunitiesFeedSidebar from '../Sidebars/CommunitiesFeedSidebar';
 
   
 type LayoutProps = {
@@ -7,11 +8,19 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children}) => {
-  
+    const [showSidebar, setShowSidebar] = useState(true)
   return (
       <>
-          <Navbar />
-          {children}
+          <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+          <main>
+              {showSidebar && (
+                  <CommunitiesFeedSidebar
+                      showSidebar={showSidebar}
+                      setShowSidebar={setShowSidebar}
+                  />
+              )}
+              {children}
+          </main>
       </>
   );
 }

@@ -82,14 +82,10 @@ export const StyledInputBase = styled(InputBase)(({ theme, }) => ({
 }));
 
 
-export const CustomMenu: any = styled((props: MenuProps) => (
+export const CustomMenu = styled((props: MenuProps) => (
     <Menu
         elevation={0}
-        PaperProps={{
-            sx: {
-                width: '252px',
-            }
-        }}
+       
         
         {...props}
     />
@@ -223,20 +219,7 @@ import { ReactElement } from "react";
 import { Label } from "@mui/icons-material";
 
 type CustomIconProps = {
-    tooltipPlacment:
-        | "top"
-        | "right"
-        | "bottom"
-        | "left"
-        | "bottom-end"
-        | "bottom-start"
-        | "left-end"
-        | "left-start"
-        | "right-end"
-        | "right-start"
-        | "top-end"
-        | "top-start"
-        | undefined;
+    tooltipPlacment:| "top"| "right"| "bottom"| "left"| "bottom-end"| "bottom-start"| "left-end"| "left-start"| "right-end"| "right-start"| "top-end"| "top-start"| undefined;
     tooltipTitle: string;
     children: ReactElement<any, any>;
     btnBgColor?: string;

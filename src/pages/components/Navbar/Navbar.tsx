@@ -7,10 +7,12 @@ import NavbarRightContent from "./NavbarRightContent";
 
 
 
-type NavbarProps = {};
+type NavbarProps = {
+    showSidebar: boolean;
+    setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const Navbar: React.FC<NavbarProps> = () => {
-     
+const Navbar: React.FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
     return (
         <Box
             sx={{
@@ -30,10 +32,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                 }}
                 position="static"
             >
-                <NavbarLeftContent />
+                <NavbarLeftContent
+                    showSidebar={showSidebar}
+                    setShowSidebar={setShowSidebar}
+                />
                 <NavbarRightContent />
-               
-                
             </AppBar>
         </Box>
     );

@@ -14,12 +14,11 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 
-import Menu from "@mui/material/Menu";
-
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 
 import { Divider } from "@mui/material";
 import UserDropDownMenu from "./UserDropDownMenu";
+
 type NavbarRightContentProps = {};
 
 const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
@@ -108,7 +107,14 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
             </CustomExpandButton>
             <CustomMenu
                 sx={{
-                    mt: "33px",
+                    mt: "39px",
+                }}
+                PaperProps={{
+                    sx: {
+                        width: "252px",
+
+                        outline: "1px solid gray",
+                    },
                 }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
