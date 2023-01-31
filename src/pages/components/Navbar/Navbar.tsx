@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
                     backgroundImage: "none",
                     flexDirection: "row",
                 }}
-                position="static"
+                position="fixed"
             >
                 <NavbarLeftContent
                     showSidebar={showSidebar}

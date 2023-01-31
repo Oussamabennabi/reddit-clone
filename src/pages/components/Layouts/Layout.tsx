@@ -1,11 +1,13 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CreatePostCard from "../createPost/CreatePostCard";
+import CreatePostForm from "../createPost/CreatePostForm";
 import PostCard from "../createPost/PostCard";
 import PostsTopicsCard from "../createPost/PostsTopicsCard";
 import { CustomCard } from "../mui";
 import Navbar from "../Navbar/Navbar";
 import CommunitiesFeedSidebar from "../Sidebars/CommunitiesFeedSidebar";
+import TopCommunitiesSidebar from "../Sidebars/TopCommunitiesSidebar";
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -67,20 +69,30 @@ const posts = [
         likes: "1.9k",
     },
 ];
+// the reson why i put all the home page code here in the layout just to avoid passing [showSidbar and setShowSidebar]
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const [showSidebar, setShowSidebar] = useState(true);
 
     return (
         <>
             <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-            <Grid
+            {/* <Grid
                 container
                 sx={{ mt: ".5rem", p: "0rem" }}
-                spacing={2}
+                spacing={5}
                 component={"main"}
+                justifyContent="center"
             >
-                <Grid pt="0 !important" item component="aside" xs="auto">
-                    <CustomCard>
+                 <Grid
+                    pt="0 !important"
+                    mr="auto"
+                    item
+                    component="aside"
+                    xs={"auto"}
+                >
+                    <CustomCard
+                        sx={{ position: "sticky !important", top: "56px" }}
+                    >
                         {showSidebar && (
                             <CommunitiesFeedSidebar
                                 showSidebar={showSidebar}
@@ -94,8 +106,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     item
                     pt="0 !important"
                     minWidth="640px"
+                    maxWidth="640px !important"
                     component="section"
                     xs={6}
+                    ml={"2rem"}
                 >
                     <CustomCard sx={{ mb: "1rem" }}>
                         <CreatePostCard />
@@ -108,10 +122,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     ))}
                 </Grid>
 
-                <Grid item pt="0 !important" component="section" xs={3}>
-                    <CustomCard>Heyy there</CustomCard>
-                </Grid>
-            </Grid>
+                <Grid
+                    item
+                    pt="0 !important"
+                    mr="auto"
+                    component="section"
+                    xs={3}
+                >
+                    <TopCommunitiesSidebar />
+                </Grid> 
+            </Grid> */}
+            <CustomCard sx={{ mb: "1rem" ,m:"auto",width:"740px"}}>
+                <CreatePostForm />
+            </CustomCard>
         </>
     );
 };

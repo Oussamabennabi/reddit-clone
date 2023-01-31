@@ -14,21 +14,19 @@ const CommunitiesFeedSidebar: React.FC<CommunitiesFeedSidebarProps> = ({
 }) => {
 
     return (
-
-            <CustomCard
-                sx={{
-                    width: "270px",
-                    py: "1rem",
-                    height: "93.5vh",
-                    // overflowY:"scroll"
-                }}
-            >
-                <CommunitiesFeedContent
-                    showSidebar={showSidebar}
-                    setShowSidebar={setShowSidebar}
-                />
-            </CustomCard>
-       
+        <CustomCard
+            sx={{
+                width: "270px",
+                py: "1rem",
+                height: "93.5vh",
+               
+            }}
+        >
+            <CommunitiesFeedContent
+                showSidebar={showSidebar}
+                setShowSidebar={setShowSidebar}
+            />
+        </CustomCard>
     );
 };
 

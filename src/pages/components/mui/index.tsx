@@ -4,9 +4,12 @@ import InputBase from "@mui/material/InputBase";
 import {
     Avatar,
     
+    Box,
+    
     Button,
     ButtonBase,
     ButtonBaseProps,
+    ButtonProps,
     FormControlLabel,
     InputLabel,
     Link,
@@ -461,32 +464,90 @@ export const CustomMenuSwitchButton = ({
         </MenuItem>
     );
 };
-interface PrimaryButtonProps extends ButtonBaseProps {
 
-}
-export const PrimaryButton = ({ children }: PrimaryButtonProps) => {
-    const theme = useTheme()
+
+
+
+export const SecondaryButton = styled((props: ButtonProps) => (
+    <Button sx={{ p: "0.1rem" }} {...props}>
+        {props.children}
+    </Button>
+))(({ theme }) => ({
+    p: ".1rem",
+    backgroundColor: `${
+        theme.palette.mode === "dark" ? "transparent" : "#ececec"
+    } `,
+    borderRadius: "20rem",
+    color: `${theme.palette.mode === "dark" ? "grey" : "#424242"} `,
+    textTransform: "none",
+    "&:hover": {
+        backgroundColor: `${theme.palette.mode === "dark" ? "#424242" : ""} `,
+    },
+}));
+
+export const PrimaryButton = styled((props: ButtonProps) => (
+    <Button sx={{p:"0.1rem"}} {...props}>{props.children}</Button>
+))(({ theme }) => ({
+    backgroundColor: `${
+        theme.palette.mode === "dark" ? "#f0f0f0" : "#1585D6"
+    } `,
+    borderRadius: "20rem",
+    color: `${theme.palette.mode === "dark" ? "black" : "white"} `,
+    textTransform: "none",
+    "&:hover": {
+        backgroundColor: `${
+            theme.palette.mode === "dark" ? "#b8b8b8" : "#2698e9"
+        } `,
+    },
+}));
+
+type CustomCommunityAvatarProps = {
+    imgSrc: string;
+};
+export const CustomCommunityAvatar = ({ imgSrc }: CustomCommunityAvatarProps) => {
     return (
-        <Button
-            sx={{
-                p:".1rem",
-                ml: "auto",
-                backgroundColor: `${
-                    theme.palette.mode === "dark" ? "#f0f0f0" : "#1585D6"
-                } `,
-                borderRadius: "20rem",
-                color: `${
-                    theme.palette.mode === "dark" ? "black" : "white"
-                } `,
-                textTransform: "none",
-                "&:hover": {
-                    backgroundColor: `${
-                        theme.palette.mode === "dark" ? "#b8b8b8" : "#2698e9"
-                    } `,
-                },
-            }}
-        >
-            {children}
-        </Button>
+            <Avatar
+                sx={{
+                    bgcolor: "#60017a",
+                    width: 24,
+                    height: 24,
+                    borderRadius: "4px",
+                }}
+                alt="Remy Sharp"
+                src={imgSrc}
+        />
     );
 };
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+export function TabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+export function a11yProps(index: number) {
+    return {
+        id: `post-form-tab-${index}`,
+        "aria-controls": `post-form-${index}`,
+    };
+}

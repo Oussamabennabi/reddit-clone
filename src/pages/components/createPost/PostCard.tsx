@@ -27,11 +27,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 cursor: "pointer",
 
                 maxHeight: "630px",
-                outline: "1px solid #5c5c5c",
+                border: "1px solid",
+                borderColor: "divider",
                 pb: "0rem",
                 borderRadius: ".3rem",
                 "&:hover": {
-                    outlineColor: "#949494",
+                    borderColor: "#5c5c5c",
                 },
             }}
         >
@@ -48,12 +49,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 pr=".6rem"
                 pl=".6rem"
                 sx={{
-                    borderRight: "1px solid #949494",
-                    backgroundColor: `${
-                        theme.palette.mode === "dark"
-                            ? "background.paper"
-                            : "#eeeeee"
-                    }`,
+                    borderRight: "1px solid ",
+                    backgroundColor: "divider",
+                    borderColor: "divider",
                 }}
             >
                 <CustomIcon
@@ -135,7 +133,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                     textAlign="left"
                     fontSize="18px"
                     fontWeight={"bold"}
-                    borderBottom="1px solid #949494"
+                    borderBottom="1px solid "
+                    borderColor={"divider"}
                 >
                     {/* {post.title} */}
                     Can we start a thread about how unrealistic some scenes in
@@ -170,7 +169,7 @@ export default PostCard;
 const ReactionsContainer = () => {
   return (
       <Box
-          sx={{ borderTop: "1px solid #949494" }}
+          sx={{ borderTop: "1px solid ",borderColor:"divider" }}
           display="flex"
           p=".6rem"
           gap=".2rem"
