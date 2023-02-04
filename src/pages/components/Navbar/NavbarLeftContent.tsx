@@ -14,15 +14,15 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { CommunitiesFeedContent } from "../Sidebars/CommunitiesFeedContent";
+import { useRecoilState } from "recoil";
+import { leftSidebarState } from "@/pages/atoms/layoutAtoms/leftSidebarAtom";
 type NavbarLeftContentProps = {
-    showSidebar: boolean;
-    setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const NavbarLeftContent: React.FC<NavbarLeftContentProps> = ({
-    showSidebar,
-    setShowSidebar,
-}) => {
+const NavbarLeftContent: React.FC<NavbarLeftContentProps> = () => {
+    const [leftSidebar, _] = useRecoilState(leftSidebarState);
+
+
     const hideHome = useMediaQuery("(min-width:1000px)");
 
     const [anchorElHome, setAnchorElHome] = useState<null | HTMLElement>(null);
@@ -37,7 +37,7 @@ const NavbarLeftContent: React.FC<NavbarLeftContentProps> = ({
 
     useEffect(() => {
         setAnchorElHome(null)
-    },[showSidebar])
+    },[leftSidebar.shown])
     return (
         <Box
             sx={{
@@ -50,7 +50,7 @@ const NavbarLeftContent: React.FC<NavbarLeftContentProps> = ({
                 <Logo />
             </Typography>
             <CustomExpandButton
-                onClick={!showSidebar ? handleOpenHomeMenu : undefined}
+                onClick={!leftSidebar.shown ? handleOpenHomeMenu : undefined}
                 width={`${hideHome && "270px"}`}
                 leftIcon={<HomeIcon />}
                 rightIcon={<ExpandMoreOutlinedIcon />}
@@ -82,10 +82,7 @@ const NavbarLeftContent: React.FC<NavbarLeftContentProps> = ({
                 open={Boolean(anchorElHome)}
                 onClose={handleCloseHomeMenu}
             >
-                <CommunitiesFeedContent
-                    showSidebar={showSidebar}
-                    setShowSidebar={setShowSidebar}
-                />
+                <CommunitiesFeedContent />
             </CustomMenu>
             <Search
                 sx={{
@@ -99,7 +96,6 @@ const NavbarLeftContent: React.FC<NavbarLeftContentProps> = ({
                 </SearchIconWrapper>
                 <StyledInputBase
                     fullWidth
-                    
                     placeholder="Search Reddit"
                     inputProps={{ "aria-label": "search" }}
                 />

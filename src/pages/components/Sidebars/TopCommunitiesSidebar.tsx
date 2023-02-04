@@ -1,28 +1,32 @@
-import Typography from '@mui/material/Typography';
-import React from 'react';
-import TopCommunities from '../Communities/TopCommunities';
-import { CustomCard } from '../mui';
+import Typography from "@mui/material/Typography";
+import { Box } from "@mui/system";
+import React from "react";
+import TopCommunities from "../Communities/TopCommunities";
+import { CustomCard } from "../mui";
 
-type TopCommunitiesSidebarProps = {
-  
+type TopCommunitiesSidebarProps = {};
+
+const TopCommunitiesSidebar: React.FC<TopCommunitiesSidebarProps> = () => {
+    return (
+        <CustomCard sx={{ width: "312px", position: "sticky", top: "72px",overflow:"hidden" }}>
+            <Typography
+                fontWeight={"bold"}
+                textAlign="left"
+                mb="1rem"
+                color="white"
+                component={"h4"}
+                sx={{ backgroundColor: "#fc471e",p:"1rem .8rem" }}
+            >
+                Top Communities
+            </Typography>
+            <Box
+                sx={{
+                    p: ".6rem",
+                }}
+            >
+                <TopCommunities />
+            </Box>
+        </CustomCard>
+    );
 };
-
-const TopCommunitiesSidebar:React.FC<TopCommunitiesSidebarProps> = () => {
-  
-  return (
-      <CustomCard
-          sx={{ p: ".6rem", width: "312px", position: "sticky", top: "56px" }}
-      >
-          <Typography
-              fontWeight={"bold"}
-              textAlign="left"
-              mb="1rem"
-              component={"h4"}
-          >
-              Top Communities
-          </Typography>
-          <TopCommunities />
-      </CustomCard>
-  );
-}
 export default TopCommunitiesSidebar;

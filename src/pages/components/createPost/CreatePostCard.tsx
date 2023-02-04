@@ -4,12 +4,14 @@ import { CustomAvatar, CustomIcon, Search, SearchIconWrapper, StyledInputBase } 
 import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import { useRouter } from 'next/router';
 
 type CreatePostCardProps = {
   
 };
 
 const CreatePostCard:React.FC<CreatePostCardProps> = () => {
+   	const router = useRouter();
   
   return (
       <Box display={"flex"} p=".6rem" alignItems={"center"}>
@@ -21,6 +23,9 @@ const CreatePostCard:React.FC<CreatePostCardProps> = () => {
                   marginLeft: "16px !important",
                   borderRadius: ".3rem",
               }}
+              onClick={() => {
+                  router.push("/createPost");
+              }}
           >
               <SearchIconWrapper>
                   {/* <SearchIcon /> */}
@@ -28,15 +33,29 @@ const CreatePostCard:React.FC<CreatePostCardProps> = () => {
               </SearchIconWrapper>
               <StyledInputBase
                   fullWidth
+                  contentEditable={false}
+                  value=""
                   color="error"
                   placeholder="Create Post"
                   inputProps={{ "aria-label": "create-post" }}
               />
           </Search>
-          <CustomIcon tooltipPlacment="bottom" tooltipTitle="Attach Photo">
+          <CustomIcon
+              onClick={() => {
+                  router.push("/createPost?media=true");
+              }}
+              tooltipPlacment="bottom"
+              tooltipTitle="Attach Photo"
+          >
               <CollectionsOutlinedIcon />
           </CustomIcon>
-          <CustomIcon tooltipPlacment="bottom" tooltipTitle="Attach File">
+          <CustomIcon
+              onClick={() => {
+                  router.push("/createPost?url=true");
+              }}
+              tooltipPlacment="bottom"
+              tooltipTitle="Attach File"
+          >
               <AttachFileOutlinedIcon />
           </CustomIcon>
       </Box>

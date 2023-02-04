@@ -1,11 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "./components/Layouts/Layout";
+import Layout from "./Layouts/Layout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useMemo, useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeModeContext } from "./context/ThemeModeContext";
 import { grey } from "@mui/material/colors";
+import { RecoilRoot } from "recoil";
 declare module "@mui/material/styles" {
     interface Theme {
         status: {
@@ -83,13 +84,15 @@ export default function App({ Component, pageProps }: AppProps) {
     );
 
     return (
-        <ThemeModeContext.Provider value={themeMode}>
-            <ThemeProvider theme={customTheme}>
-                <CssBaseline />
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </ThemeProvider>
-        </ThemeModeContext.Provider>
+        <RecoilRoot >
+            <ThemeModeContext.Provider value={themeMode}>
+                <ThemeProvider theme={customTheme}>
+                    <CssBaseline />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </ThemeProvider>
+            </ThemeModeContext.Provider>
+        </RecoilRoot>
     );
 }

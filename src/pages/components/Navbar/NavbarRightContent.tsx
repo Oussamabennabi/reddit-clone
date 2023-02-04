@@ -1,10 +1,12 @@
-import { Avatar, Box, Typography, useMediaQuery } from "@mui/material";
+import { Avatar, Box, Modal, Typography, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 import {
     CustomAvatar,
     CustomExpandButton,
     CustomIcon,
     CustomMenu,
+    PrimaryButton,
+    SecondaryButton,
 } from "../mui";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import CopyrightOutlinedIcon from "@mui/icons-material/CopyrightOutlined";
@@ -18,6 +20,9 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 
 import { Divider } from "@mui/material";
 import UserDropDownMenu from "./UserDropDownMenu";
+import { authModalState } from "@/pages/atoms/temp";
+import { useRecoilState } from "recoil";
+import CreateMenu from "./CreateMenu";
 
 type NavbarRightContentProps = {};
 
@@ -25,8 +30,10 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
     const hideUsername = useMediaQuery("(min-width:1230px)");
     const hideRightIcons = useMediaQuery("(min-width:854px)");
     const hideAllIcons = useMediaQuery("(min-width:600px)");
-
+    const [modal, setModal] = useRecoilState(authModalState);
+    
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const [anchorElCreate, setAnchorElCreate] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -35,6 +42,15 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleOpenCreateMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElCreate(event.currentTarget);
+    };
+
+    const handleCloseCreateMenu = () => {
+        setAnchorElCreate(null);
+    };
+
     return (
         <Box
             sx={{
@@ -84,9 +100,37 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                     <CustomIcon
                         tooltipTitle="Create Post"
                         tooltipPlacment="bottom"
+                        onClick={handleOpenCreateMenu}
                     >
                         <AddOutlinedIcon />
                     </CustomIcon>
+                    <CustomMenu
+                        sx={{
+                            mt: "39px",
+                        }}
+                        PaperProps={{
+                            sx: {
+                                width: "252px",
+
+                                outline: "1px solid gray",
+                            },
+                        }}
+                        id="menu-appbar"
+                        anchorEl={anchorElCreate}
+                        anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        open={Boolean(anchorElCreate)}
+                        onClose={handleCloseCreateMenu}
+                    >
+                        <CreateMenu />
+                    </CustomMenu>
 
                     <CustomIcon
                         tooltipTitle="Advertise"
@@ -96,15 +140,33 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                     </CustomIcon>
                 </>
             )}
+            {/* logedIn State  */}
             <CustomExpandButton
                 onClick={handleOpenUserMenu}
-                leftIcon={<CustomAvatar imgSrc="jj" />}
+                leftIcon={<CustomAvatar imgSrc="#" />}
                 rightIcon={<ExpandMoreOutlinedIcon />}
             >
                 <Typography component="small" fontSize={"12px"}>
                     {hideUsername && "bennabi@gmail.com"}
                 </Typography>
             </CustomExpandButton>
+
+            <Box display="flex" gap=".4rem">
+                <SecondaryButton
+                    onClick={() => {
+                        setModal((prev) => ({ open: true, view: "signup" }));
+                    }}
+                >
+                    Sign Up
+                </SecondaryButton>
+                <PrimaryButton
+                    onClick={() => {
+                        setModal((prev) => ({ open: true, view: "login" }));
+                    }}
+                >
+                    Log In
+                </PrimaryButton>
+            </Box>
             <CustomMenu
                 sx={{
                     mt: "39px",

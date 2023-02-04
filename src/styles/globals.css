@@ -12,3 +12,11 @@
   border:1px solid grey;
 }
 
+/* for form inputs */
+.css-m28hg-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 10rem !important;
+}
+.css-1fj08h0-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 10rem !important;
+
+}

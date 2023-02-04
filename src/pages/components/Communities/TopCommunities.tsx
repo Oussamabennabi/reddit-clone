@@ -34,7 +34,7 @@ const CommunityInfoButton = ({ community}:any ) => {
               <CustomCommunityAvatar imgSrc="#" />
               {community.name}
           </Typography>
-          <PrimaryButton>Join</PrimaryButton>
+          <PrimaryButton sx={{ml:"auto"}}>Join</PrimaryButton>
       </Box>
   );
 }
@@ -56,7 +56,7 @@ const TopCommunities: React.FC<TopCommunitiesProps> = () => {
   ]
   
   return (
-      <Box display="flex" gap=".5rem" component={"div"} flexDirection="column">
+      <Box  display="flex" gap=".5rem" component={"div"} flexDirection="column">
           {communities.map((community) => (
         <CommunityInfoButton key={community.id} community={community}/>
         

@@ -8,11 +8,9 @@ import NavbarRightContent from "./NavbarRightContent";
 
 
 type NavbarProps = {
-    showSidebar: boolean;
-    setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
+const Navbar: React.FC<NavbarProps> = () => {
     return (
         <Box
             sx={{
@@ -33,8 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
                 position="fixed"
             >
                 <NavbarLeftContent
-                    showSidebar={showSidebar}
-                    setShowSidebar={setShowSidebar}
+                  
                 />
                 <NavbarRightContent />
             </AppBar>

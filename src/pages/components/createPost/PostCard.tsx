@@ -34,6 +34,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 "&:hover": {
                     borderColor: "#5c5c5c",
                 },
+                backgroundColor:"background.paper"
             }}
         >
             {" "}
@@ -120,7 +121,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                     >
                         {post.createdAt}
                     </Typography>
-                    <PrimaryButton>Join</PrimaryButton>
+                    <PrimaryButton sx={{ml:"auto"}}>Join</PrimaryButton>
                 </Box>
                 {/* content */}
                 {/* TITLE */}
@@ -129,9 +130,10 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                     component="h3"
                     mt={"10px"}
                     pl=".6rem"
+                    pr=".6rem"
                     pb="4px"
                     textAlign="left"
-                    fontSize="18px"
+                    fontSize="1.1rem"
                     fontWeight={"bold"}
                     borderBottom="1px solid "
                     borderColor={"divider"}

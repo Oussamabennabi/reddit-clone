@@ -1,34 +1,41 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import { CustomIcon, CustomMenuButton } from "../mui";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import OpenInFullOutlinedIcon from "@mui/icons-material/OpenInFullOutlined";
+import { leftSidebarState } from "@/pages/atoms/layoutAtoms/leftSidebarAtom";
+import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+import { useRecoilState } from "recoil";
+import React from "react";
 
-type CommunitiesFeedContentProps = {
-  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
-    showSidebar: boolean;
-};
-export const CommunitiesFeedContent = ({
-    setShowSidebar,
-    showSidebar,
-}: CommunitiesFeedContentProps) => {
-
-
+type CommunitiesFeedContentProps = {};
+export const CommunitiesFeedContent: React.FC<CommunitiesFeedContentProps> = () => {
+    const [leftSidebar, setLeftSidebar] = useRecoilState(leftSidebarState);
+    const hideExpandColor = useMediaQuery("(max-width:1300px)");
     return (
         <Box position={"relative"}>
-            <Typography
-                onClick={() => setShowSidebar(prev=>prev?false:true)}
+           {!hideExpandColor&& <Typography
+                onClick={() =>
+                    setLeftSidebar((prev) => ({
+                        ...prev,
+                        shown: !prev.shown,
+                    }))
+                }
                 component="div"
                 sx={{ position: "absolute", right: ".3rem", top: "-.7rem" }}
             >
                 <CustomIcon
                     tooltipTitle={`${
-                        showSidebar ? "close Sidebar" : "expand Sidebar"
+                        leftSidebar.shown ? "close Sidebar" : "expand Sidebar"
                     }`}
                     tooltipPlacment="bottom"
                 >
-                    <OpenInFullOutlinedIcon sx={{ fontSize: "16px" }} />
+                    {leftSidebar.shown ? (
+                        <CloseFullscreenIcon sx={{ fontSize: "16px" }} />
+                    ) : (
+                        <OpenInFullOutlinedIcon sx={{ fontSize: "16px" }} />
+                    )}
                 </CustomIcon>
-            </Typography>
+            </Typography>}
             <Typography
                 ml="1rem"
                 component={"small"}

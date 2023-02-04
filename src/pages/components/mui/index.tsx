@@ -11,11 +11,14 @@ import {
     ButtonBaseProps,
     ButtonProps,
     FormControlLabel,
+    FormControlLabelProps,
     InputLabel,
     Link,
     Menu,
     MenuItem,
     MenuProps,
+    TextField,
+    TextFieldProps,
     Typography,
     useMediaQuery,
 } from "@mui/material";
@@ -258,6 +261,8 @@ export const CustomIcon = ({
     children,
     btnBgColor,
     btnPadding,
+    sx,
+    onClick,
 }: CustomIconProps) => {
     return (
         <Tooltip arrow title={tooltipTitle} placement={tooltipPlacment}>
@@ -267,7 +272,9 @@ export const CustomIcon = ({
                     backgroundColor: btnBgColor,
                     borderRadius: "0.4rem",
                     p: btnPadding,
+                    ...sx,
                 }}
+                onClick={onClick}
             >
                 {children}
             </IconButton>
@@ -349,8 +356,9 @@ export const CustomExpandButton = ({
 
 type CustomAvatarProps = {
     imgSrc: string;
+    sx?:React.CSSProperties
 };
-export const CustomAvatar = ({ imgSrc }: CustomAvatarProps) => {
+export const CustomAvatar = ({ imgSrc,sx }: CustomAvatarProps) => {
     return (
         <StyledBadge
             overlap="circular"
@@ -359,10 +367,12 @@ export const CustomAvatar = ({ imgSrc }: CustomAvatarProps) => {
         >
             <Avatar
                 sx={{
+                    
                     bgcolor: "#60017a",
                     width: 24,
                     height: 24,
                     borderRadius: "4px",
+                    ...sx
                 }}
                 alt="Remy Sharp"
             />
@@ -388,9 +398,10 @@ export const CustomMenuButton = ({
     text,
     onClick,
     children,
+    
 }: CustomMenuButtonProps) => {
     return (
-        <MenuItem disabled={disabled} sx={{ my: "4px" }}>
+        <MenuItem disabled={disabled} sx={{ my: "4px" }} onClick={onClick}>
             <Typography
                 component={"div"}
                 sx={{
@@ -411,16 +422,17 @@ export const CustomMenuButton = ({
         </MenuItem>
     );
 };
-type CustomSwitchButtonProps = {
-    checked?: boolean;
+interface CustomSwitchButtonProps extends FormControlLabelProps {
+    checked?: boolean|undefined;
 };
 
-export const CustomSwitchButton = ({ checked }: CustomSwitchButtonProps) => {
+export const CustomSwitchButton = ({ checked,...props }: CustomSwitchButtonProps) => {
+    const { control,sx, ...others } = props
     return (
         <FormControlLabel
             sx={{ m: 0 }}
             control={<IOSSwitch checked={checked} />}
-            label
+            {...others}
         />
     );
 };
@@ -475,31 +487,36 @@ export const SecondaryButton = styled((props: ButtonProps) => (
 ))(({ theme }) => ({
     p: ".1rem",
     backgroundColor: `${
-        theme.palette.mode === "dark" ? "transparent" : "#ececec"
+        theme.palette.mode === "dark" ? "transparent" : "transparent"
     } `,
+    outline: "1px solid #FC471E",
     borderRadius: "20rem",
     color: `${theme.palette.mode === "dark" ? "grey" : "#424242"} `,
     textTransform: "none",
+    fontWeight: "bold",
     "&:hover": {
-        backgroundColor: `${theme.palette.mode === "dark" ? "#424242" : ""} `,
+        backgroundColor: `${theme.palette.mode === "dark" ? "#DD4A1517" : ""} `,
     },
 }));
 
 export const PrimaryButton = styled((props: ButtonProps) => (
-    <Button sx={{p:"0.1rem"}} {...props}>{props.children}</Button>
+    <Button sx={{ p: "0.1rem" }} {...props}>
+        {props.children}
+    </Button>
 ))(({ theme }) => ({
     backgroundColor: `${
-        theme.palette.mode === "dark" ? "#f0f0f0" : "#1585D6"
+        theme.palette.mode === "dark" ? "#FC471E" : "#FC471E"
     } `,
     borderRadius: "20rem",
-    color: `${theme.palette.mode === "dark" ? "black" : "white"} `,
+    color: `${theme.palette.mode === "dark" ? "white" : "white"} `,
     textTransform: "none",
     "&:hover": {
         backgroundColor: `${
-            theme.palette.mode === "dark" ? "#b8b8b8" : "#2698e9"
+            theme.palette.mode === "dark" ? "#fd6341" : "#fd6341"
         } `,
     },
 }));
+
 
 type CustomCommunityAvatarProps = {
     imgSrc: string;
@@ -519,7 +536,7 @@ export const CustomCommunityAvatar = ({ imgSrc }: CustomCommunityAvatarProps) =>
     );
 };
 
-interface TabPanelProps {
+interface TabPanelProps  {
     children?: React.ReactNode;
     index: number;
     value: number;
@@ -537,9 +554,9 @@ export function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
-                </Box>
+               
+                    children
+                
             )}
         </div>
     );
@@ -551,3 +568,45 @@ export function a11yProps(index: number) {
         "aria-controls": `post-form-${index}`,
     };
 }
+
+
+export  const modalStyles = {
+    modal: {
+        display: "flex",
+        paddingInline: "1rem",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "auto",
+    },
+    modalContainer: {
+        // maxWidth: "512px",
+        maxHeight: "94%",
+        bgcolor: "background.paper",
+        borderRadius: "1rem",
+        pt:"1rem"
+    },
+    modalContent: {
+        py: "3rem",
+       
+    },
+};
+
+export const CustomTextField = styled((props: TextFieldProps) => (
+    <TextField InputLabelProps={{
+                  style: {
+                      color: "grey",
+                  },
+              }} sx={{p:"0.1rem"}} {...props}/>
+))(({ theme }) => ({
+    //  Styles Goes Here
+}));
+
+
+// Custom MUI Component Boilerplate
+// export const NAME_CM = styled((props: CM_PROPS) => (
+//     <CM
+//         {...props}
+//     />
+// ))(({ theme }) => ({
+//     //  Styles Goes Here
+// }));
