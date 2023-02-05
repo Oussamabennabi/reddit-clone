@@ -15,7 +15,7 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
-
+import { User } from "firebase/auth";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 
 import { Divider } from "@mui/material";
@@ -23,6 +23,8 @@ import UserDropDownMenu from "./UserDropDownMenu";
 import { authModalState } from "@/pages/atoms/temp";
 import { useRecoilState } from "recoil";
 import CreateMenu from "./CreateMenu";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/pages/firebase/firebase";
 
 type NavbarRightContentProps = {};
 
@@ -31,6 +33,8 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
     const hideRightIcons = useMediaQuery("(min-width:854px)");
     const hideAllIcons = useMediaQuery("(min-width:600px)");
     const [modal, setModal] = useRecoilState(authModalState);
+    const [user] = useAuthState(auth)
+    console.log(user);
     
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const [anchorElCreate, setAnchorElCreate] = useState<null | HTMLElement>(null);
@@ -50,7 +54,11 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
     const handleCloseCreateMenu = () => {
         setAnchorElCreate(null);
     };
-
+    React.useEffect(() => {
+        setAnchorElCreate(null);
+        setAnchorElUser(null);
+        
+    },[user])
     return (
         <Box
             sx={{
@@ -104,6 +112,7 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                     >
                         <AddOutlinedIcon />
                     </CustomIcon>
+                    {user &&
                     <CustomMenu
                         sx={{
                             mt: "39px",
@@ -131,6 +140,7 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                     >
                         <CreateMenu />
                     </CustomMenu>
+                    }
 
                     <CustomIcon
                         tooltipTitle="Advertise"
@@ -141,16 +151,18 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                 </>
             )}
             {/* logedIn State  */}
+            {user ?
             <CustomExpandButton
                 onClick={handleOpenUserMenu}
-                leftIcon={<CustomAvatar imgSrc="#" />}
+                leftIcon={<CustomAvatar imgSrc={user?.photoURL||"" } />}
                 rightIcon={<ExpandMoreOutlinedIcon />}
             >
                 <Typography component="small" fontSize={"12px"}>
-                    {hideUsername && "bennabi@gmail.com"}
+                    {hideUsername && user?.displayName?.split(' ')[0]}
                 </Typography>
             </CustomExpandButton>
-
+            
+                :
             <Box display="flex" gap=".4rem">
                 <SecondaryButton
                     onClick={() => {
@@ -167,33 +179,36 @@ const NavbarRightContent: React.FC<NavbarRightContentProps> = () => {
                     Log In
                 </PrimaryButton>
             </Box>
-            <CustomMenu
-                sx={{
-                    mt: "39px",
-                }}
-                PaperProps={{
-                    sx: {
-                        width: "252px",
+            }
+            {user &&
+                <CustomMenu
+                    sx={{
+                        mt: "39px",
+                    }}
+                    PaperProps={{
+                        sx: {
+                            width: "252px",
 
-                        outline: "1px solid gray",
-                    },
-                }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-            >
-                <UserDropDownMenu />
-            </CustomMenu>
+                            outline: "1px solid gray",
+                        },
+                    }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                >
+                    <UserDropDownMenu />
+                </CustomMenu>
+            }
         </Box>
     );
 };

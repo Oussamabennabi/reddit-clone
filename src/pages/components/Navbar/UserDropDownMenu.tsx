@@ -17,13 +17,15 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import SettingsSuggestOutlinedIcon from "@mui/icons-material/SettingsSuggestOutlined";
 import { Divider } from "@mui/material";
 import { ThemeModeContext } from "@/pages/context/ThemeModeContext";
+import { auth } from "@/pages/firebase/firebase";
+import { useSignOut } from "react-firebase-hooks/auth";
 
 type UserDropDownMenuProps = {};
 
 const UserDropDownMenu: React.FC<UserDropDownMenuProps> = () => {
     
     const themeMode = React.useContext(ThemeModeContext);
-  
+       const [signOut, loading, error] = useSignOut(auth);
     return (
         <>
             <CustomMenuButton
@@ -97,7 +99,11 @@ const UserDropDownMenu: React.FC<UserDropDownMenuProps> = () => {
                 rightIcon={<ExpandMoreOutlinedIcon />}
             />
             <Divider sx={{ my: "14px" }} />
-            <CustomMenuButton text="LogOut" leftIcon={<LoginOutlinedIcon />} />
+            <CustomMenuButton
+                text="LogOut"
+                onClick={signOut}
+                leftIcon={<LoginOutlinedIcon />}
+            />
 
             <Typography component={"div"} sx={{ p: "4px", ml: "18px" }}>
                 <Typography fontSize="12px" component={"small"}>

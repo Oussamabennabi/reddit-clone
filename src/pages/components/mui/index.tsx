@@ -355,7 +355,7 @@ export const CustomExpandButton = ({
 };
 
 type CustomAvatarProps = {
-    imgSrc: string;
+    imgSrc: string|null|undefined;
     sx?:React.CSSProperties
 };
 export const CustomAvatar = ({ imgSrc,sx }: CustomAvatarProps) => {
@@ -366,13 +366,13 @@ export const CustomAvatar = ({ imgSrc,sx }: CustomAvatarProps) => {
             variant="dot"
         >
             <Avatar
+                src={imgSrc}
                 sx={{
-                    
                     bgcolor: "#60017a",
                     width: 24,
                     height: 24,
                     borderRadius: "4px",
-                    ...sx
+                    ...sx,
                 }}
                 alt="Remy Sharp"
             />
@@ -610,3 +610,6 @@ export const CustomTextField = styled((props: TextFieldProps) => (
 // ))(({ theme }) => ({
 //     //  Styles Goes Here
 // }));
+
+
+

@@ -5,6 +5,8 @@ import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { useRouter } from 'next/router';
+import { auth } from '@/pages/firebase/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 type CreatePostCardProps = {
   
@@ -12,10 +14,10 @@ type CreatePostCardProps = {
 
 const CreatePostCard:React.FC<CreatePostCardProps> = () => {
    	const router = useRouter();
-  
+  const [user] = useAuthState(auth);
   return (
       <Box display={"flex"} p=".6rem" alignItems={"center"}>
-          <CustomAvatar imgSrc="#" />
+          <CustomAvatar imgSrc={user?.photoURL} sx={{width:"30px",height:"30px"}} />
           <Search
               sx={{
                   flexGrow: "1",

@@ -12,7 +12,7 @@ type CommunityProps = {
 
 const posts = [
     {
-        id: "oprtiufgfkj-5659834=39458",
+        id: "oprtiufgfkj-59834=39458",
         communityName: "r/oussama",
         poster: "u/oussama-bennabi",
         createdAt: "4 hours ago",
@@ -22,7 +22,7 @@ const posts = [
         likes: "7.9k",
     },
     {
-        id: "oprtiufgfkj-5659834=39458",
+        id: "oprtiufgfk659834=39458",
         communityName: "r/nourhane",
         poster: "u/nourhane-sabo3i",
         createdAt: "2 hours ago",
@@ -33,7 +33,7 @@ const posts = [
     },
     ,
     {
-        id: "oprtiufgfkj-5659834=39458",
+        id: "oprtiufgfkj-59834=39458",
         communityName: "r/mbarek",
         poster: "u/mbarek-deeznuts",
         createdAt: "1 minute ago",
@@ -44,7 +44,7 @@ const posts = [
     },
 
     {
-        id: "oprtiufgfkj-5659834=39458",
+        id: "oprtiufgfkj9834=39458",
         communityName: "r/walid",
         poster: "u/oussama-walid",
         createdAt: "2 seconds ago",
@@ -56,7 +56,7 @@ const posts = [
 
     ,
     {
-        id: "oprtiufgfkj-5659834=39458",
+        id: "oprtiufgfkj-565934=39458",
         communityName: "r/meriam",
         poster: "u/meriam-benmansour",
         createdAt: "1 hours ago",
